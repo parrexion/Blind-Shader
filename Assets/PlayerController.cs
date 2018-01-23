@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
 	public float moveSpeed;
+	public bool hasKey = false;
+	public Image keyImage;
 
 	private Rigidbody rigid;
 	private Vector3 inputVector;
@@ -39,5 +42,11 @@ public class PlayerController : MonoBehaviour {
 
 	void FixedUpdate() {
 		rigid.velocity = moveVelocity;
+	}
+
+
+	public void AqcuireKey() {
+		hasKey = true;
+		keyImage.enabled = true;
 	}
 }

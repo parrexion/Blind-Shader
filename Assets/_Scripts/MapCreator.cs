@@ -11,11 +11,19 @@ public class MapCreator : MonoBehaviour {
 	public Transform player;
 
 
-	// Use this for initialization
-	void Start () {
+	/// <summary>
+	/// Generate map
+	/// </summary>
+	public void GenerateMap () {
+
+		// Remove old map
+		List<GameObject> children = new List<GameObject>();
+		foreach (Transform child in transform) children.Add(child.gameObject);
+		children.ForEach(child => DestroyImmediate(child));
 
 		colorPrefabs = GetComponent<ColorPrefabs>();
 
+		// Create new map
 		for (int x = 0; x < map.width; x++) {
 			for (int y = 0; y < map.height; y++) {
 				GenerateTile(x,y);

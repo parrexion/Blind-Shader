@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
+	public static bool dead = false;
 	public float moveSpeed;
 	public bool hasKey = false;
 	public Image keyImage;
@@ -21,6 +22,10 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Update() {
+		if (dead) {
+			moveVelocity = Vector3.zero;
+			return;
+		}
 		inputVector = new Vector3(Input.GetAxis("Horizontal"),0f,Input.GetAxis("Vertical"));
 		moveVelocity = inputVector * moveSpeed;
 

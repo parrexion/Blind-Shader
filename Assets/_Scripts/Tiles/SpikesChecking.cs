@@ -3,20 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SpikesChecking : MonoBehaviour {
+public class SpikesChecking : Trap {
 
 	private Text winText;
 
-
-	void Start() {
-		winText = GameObject.Find("WinText").GetComponent<Text>();
-	}
 	
 	void OnTriggerEnter(Collider other) {
 		if (other.gameObject.tag == "Player") {
-			winText.text = "YOU DIED";
-			winText.enabled = true;
-			Time.timeScale = 0;
+			CreatePings(2,0.15f);
+			KillPlayer();
 		}
 	}
 }

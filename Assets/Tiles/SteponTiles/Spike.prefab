@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23905011217554826}
   - component: {fileID: 114211171729227546}
   m_Layer: 0
-  m_Name: Spikes
+  m_Name: Spike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,7 +52,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -109,3 +109,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e9595df42f2b4042bb544b9c5fe7807, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ping: {fileID: 4449854639308648, guid: 3060051a770d81d4bb5b9fa40219044c, type: 2}
+  pingSpeed: 0

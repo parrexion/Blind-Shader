@@ -38,7 +38,7 @@ public class BoulderTrap : Trap {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		if (other.gameObject.tag == "Player") {
+		if (isActive && other.gameObject.tag == "Player") {
 			KillPlayer();
 		}
 		else if (other.gameObject.tag == "Wall") {

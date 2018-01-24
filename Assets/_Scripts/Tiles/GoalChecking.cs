@@ -14,8 +14,20 @@ public class GoalChecking : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider other) {
 		if (other.gameObject.tag == "Player") {
-			if (other.GetComponent<PlayerController>().hasKey)
+			if (other.GetComponent<PlayerController>().hasKey) {
 				winText.enabled = true;
+				PlayerController.dead = true;
+				StartCoroutine(GoalReached());
+			}
 		}
+	}
+
+	IEnumerator GoalReached() {
+
+		yield return new WaitForSeconds(2f);
+
+		LevelController.instance.NextLevel();
+
+		yield break;
 	}
 }

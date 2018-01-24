@@ -6,8 +6,9 @@ public class MapCreator : MonoBehaviour {
 
 	public Texture2D map;
 	public float tileOffset;
-
-	private ColorPrefabs colorPrefabs;
+	public bool useBlind;
+	public ColorPrefabs normalPrefabs;
+	public ColorPrefabs blindPrefabs;
 	public Transform player;
 
 
@@ -20,8 +21,6 @@ public class MapCreator : MonoBehaviour {
 		List<GameObject> children = new List<GameObject>();
 		foreach (Transform child in transform) children.Add(child.gameObject);
 		children.ForEach(child => DestroyImmediate(child));
-
-		colorPrefabs = GetComponent<ColorPrefabs>();
 
 		// Create new map
 		for (int x = 0; x < map.width; x++) {
@@ -36,10 +35,11 @@ public class MapCreator : MonoBehaviour {
 
 		Vector3 position = new Vector3(x, 0.1f, y);
 		Color pixelColor = map.GetPixel(x, y);
+		ColorPrefabs colorPrefabs = (useBlind) ? blindPrefabs : normalPrefabs;
 
 		Transform tile = null;
 
-		if (pixelColor.a == 0f) { //pixelColor.r * pixelColor.g * pixelColor.b == 1) {
+		if (pixelColor.a == 0f || pixelColor.r * pixelColor.g * pixelColor.b == 1) {
 			//Empty space
 		}
 		else if (pixelColor.r + pixelColor.g + pixelColor.b == 0) {

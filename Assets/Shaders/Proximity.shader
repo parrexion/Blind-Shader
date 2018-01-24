@@ -65,7 +65,7 @@ Shader "Custom/Proximity" {
 
 		// Return appropriate colour
 		float4 tex = tex2D(_MainTex, float4(input.tex));
-		tex.a = /*alpha;*/ 0.1 + 0.9 * alpha;
+		tex.a = alpha; /*0.1 + 0.9 * alpha;*/
 		return tex;
 	}
 

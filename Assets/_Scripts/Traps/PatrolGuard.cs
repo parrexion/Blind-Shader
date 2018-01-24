@@ -25,7 +25,6 @@ public class PatrolGuard : Trap {
 		}
 		Vector3 moveSpeed = Vector3.MoveTowards(transform.position, waypointList[currentWaypoint].position, speed * Time.deltaTime);
 		transform.position = moveSpeed;
-		Debug.Log(moveSpeed);
 	}
 
 	void OnTriggerEnter(Collider other) {

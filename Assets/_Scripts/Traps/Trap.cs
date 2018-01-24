@@ -36,7 +36,18 @@ public class Trap : MonoBehaviour {
 		winText.text = "YOU DIED";
 		winText.enabled = true;
 		PlayerController.dead = true;
+		StartCoroutine(Respawn());
 	}
+
+	IEnumerator Respawn() {
+
+		yield return new WaitForSeconds(2f);
+
+		LevelController.instance.RestartLevel();
+
+		yield break;
+	}
+
 
 	public virtual bool Activate() {
 		return false;

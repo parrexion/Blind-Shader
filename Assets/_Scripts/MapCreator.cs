@@ -21,25 +21,25 @@ public class MapCreator : MonoBehaviour {
 		List<GameObject> children = new List<GameObject>();
 		foreach (Transform child in transform) children.Add(child.gameObject);
 		children.ForEach(child => DestroyImmediate(child));
+		Color32[] colorData = map.GetPixels32();
 
 		// Create new map
 		for (int x = 0; x < map.width; x++) {
 			for (int y = 0; y < map.height; y++) {
-				GenerateTile(x,y);
+				GenerateTile(colorData[x + y*map.width], x,y);
 			}
 		}
 	}
 
 
-	void GenerateTile(int x, int y) {
+	void GenerateTile(Color32 pixelColor, int x, int y) {
 
 		Vector3 position = new Vector3(x, 0.1f, y);
-		Color pixelColor = map.GetPixel(x, y);
 		ColorPrefabs colorPrefabs = (useBlind) ? blindPrefabs : normalPrefabs;
 
 		Transform tile = null;
 
-		if (pixelColor.a == 0f || pixelColor.r * pixelColor.g * pixelColor.b == 1) {
+		if (pixelColor.a == 0 || (pixelColor.r == 255 && pixelColor.g == 255 && pixelColor.b == 255)) {
 			//Empty space
 		}
 		else if (pixelColor.r + pixelColor.g + pixelColor.b == 0) {
@@ -47,28 +47,28 @@ public class MapCreator : MonoBehaviour {
 			tile = colorPrefabs.black;
 			position += new Vector3(0, 0.4f, 0);
 		}
-		else if (pixelColor.r == 1f) {
+		else if (pixelColor.r == 255) {
 			Debug.Log("RED");
 			tile = colorPrefabs.red;
 		}
-		else if (pixelColor.g == 1f) {
+		else if (pixelColor.g == 255) {
 			Debug.Log("GREEN");
 			tile = colorPrefabs.green;
 			player.transform.localPosition = new Vector3(position.x, 1,position.z);
 		}
-		else if (pixelColor.b == 1f) {
+		else if (pixelColor.b == 255) {
 			Debug.Log("BLUE");
 			tile = colorPrefabs.blue;
 		}
-		else if (pixelColor.r > 0.5f && pixelColor.g > 0.5f && pixelColor.b < 0.5f) {
+		else if (pixelColor.r > 128 && pixelColor.g > 128 && pixelColor.b < 128) {
 			Debug.Log("YELLOW");
 			tile = colorPrefabs.yellow;
 		}
-		else if (pixelColor.r < 0.5f && pixelColor.g > 0.5f && pixelColor.b > 0.5f) {
+		else if (pixelColor.r < 128 && pixelColor.g > 128 && pixelColor.b > 128) {
 			Debug.Log("CYAN");
 			tile = colorPrefabs.cyan;
 		}
-		else if (pixelColor.r > 0.5f && pixelColor.g < 0.5f && pixelColor.b > 0.5f) {
+		else if (pixelColor.r > 128 && pixelColor.g < 128 && pixelColor.b > 128) {
 			Debug.Log("MAGENTA");
 			tile = colorPrefabs.magenta;
 		}

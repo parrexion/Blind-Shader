@@ -4,11 +4,11 @@
 Shader "Custom/Proximity" {
 	Properties{
 		_MainTex("Base (RGB)", 2D) = "white" {} // Regular object texture 
-		_PlayerPosition("Player Position", vector) = (0,0,0,0) // The location of the player - will be set by script
-		_ShotPosition("Shot Position", vector) = (0,0,0,0) // The location of the shot - will be set by script
+		//_PlayerPosition("Player Position", vector) = (0,0,0,0) // The location of the player - will be set by script
+		//_ShotPosition("Shot Position", vector) = (0,0,0,0) // The location of the shot - will be set by script
 		_PVisibleDistance("Player Visibility Distance", float) = 2.0 // How close does the player have to be to make object visible
 		_SVisibleDistance("Shot Visibility Distance", float) = 4.0 // How close does the player have to be to make object visible
-		_UseShot("Use Shot", float) = 0
+		//_UseShot("Use Shot", float) = 0
 	}
 
 	SubShader{

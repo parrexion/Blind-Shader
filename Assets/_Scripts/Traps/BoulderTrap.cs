@@ -43,6 +43,7 @@ public class BoulderTrap : Trap {
 		}
 		else if (other.gameObject.tag == "Wall") {
 			isActive = false;
+			GetComponent<Collider>().isTrigger = false;
 			CreateSinglePing();
 		}
 	}

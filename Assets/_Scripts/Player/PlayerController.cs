@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
@@ -12,38 +13,37 @@ public class PlayerController : MonoBehaviour {
 	private Vector3 inputVector;
 	private Vector3 moveVelocity;
 	private Camera mainCamera;
-	private FireShot shooter;
 
 
 	void Start() {
 		rigid = GetComponent<Rigidbody>();
-		shooter = GetComponent<FireShot>();
 		mainCamera = FindObjectOfType<Camera>();
 	}
 
 	void Update() {
-		if (dead) {
+		if (dead || !Input.GetMouseButton(0) || EventSystem.current.IsPointerOverGameObject()) {
 			moveVelocity = Vector3.zero;
 			return;
 		}
-		inputVector = new Vector3(Input.GetAxis("Horizontal"),0f,Input.GetAxis("Vertical"));
-		moveVelocity = inputVector * moveSpeed;
 
-		Ray cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition);
+		//Handling moving
+		Ray cameraRay;
+		if (Application.platform == RuntimePlatform.Android)
+			cameraRay = mainCamera.ScreenPointToRay(Input.GetTouch(0).position);
+		else
+			cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition);
 		Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
 		float rayLength;
 
-		if (groundPlane.Raycast(cameraRay, out rayLength)) {
-			Vector3 pointToLook = cameraRay.GetPoint(rayLength);
-			// Debug.DrawLine(cameraRay.origin, pointToLook, Color.blue);
+		if (!groundPlane.Raycast(cameraRay, out rayLength)) 
+			return;
 
-			transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
-		}
+		Vector3 pointToLook = cameraRay.GetPoint(rayLength);
+		Debug.DrawLine(cameraRay.origin, pointToLook, Color.blue);
+		transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
 
-		if (Input.GetMouseButtonDown(0)) {
-			shooter.Fire();
-		}
-
+		moveVelocity = new Vector3(pointToLook.x - transform.position.x, 1, pointToLook.z - transform.position.z);
+		moveVelocity = moveSpeed * moveVelocity.normalized;
 	}
 
 	void FixedUpdate() {

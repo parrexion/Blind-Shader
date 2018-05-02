@@ -18,7 +18,8 @@ public class LevelController : MonoBehaviour {
 	}
 #endregion
 
-	int currentLevel = 0;
+	public int bestLevel = 1;
+	public int currentLevel = 0;
 
 
 	void Update() {
@@ -33,6 +34,7 @@ public class LevelController : MonoBehaviour {
 
 	public void NextLevel() {
 		currentLevel++;
+		bestLevel = Mathf.Max(bestLevel, currentLevel);
 		RestartLevel();
 	}
 }

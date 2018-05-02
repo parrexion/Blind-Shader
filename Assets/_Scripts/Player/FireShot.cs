@@ -15,16 +15,18 @@ public class FireShot : MonoBehaviour {
 	void Update() {
 		cooldown -= Time.deltaTime;
 		UpdateCooldown();
+
+		if (Input.GetKeyDown(KeyCode.X))
+			Fire();
 	}
 
 	// Update is called once per frame
 	public void Fire() {
-
 		if (cooldown > 0)
 			return;
 
 		cooldown = timeBetweenShots;
-		bullet.Fire(/*timeBetweenShots,*/ transform.localRotation);
+		bullet.Fire(transform.localRotation);
 	}
 
 	void UpdateCooldown() {

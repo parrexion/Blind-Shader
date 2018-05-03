@@ -12,38 +12,42 @@ public class PlayerController : MonoBehaviour {
 	private Rigidbody rigid;
 	private Vector3 inputVector;
 	private Vector3 moveVelocity;
-	private Camera mainCamera;
+	private Joystick joystick;
 
 
 	void Start() {
 		rigid = GetComponent<Rigidbody>();
-		mainCamera = FindObjectOfType<Camera>();
+		joystick = FindObjectOfType<Joystick>();
 	}
 
 	void Update() {
-		if (dead || !Input.GetMouseButton(0) || EventSystem.current.IsPointerOverGameObject()) {
+		if (dead) {
 			moveVelocity = Vector3.zero;
 			return;
 		}
 
-		//Handling moving
-		Ray cameraRay;
-		if (Application.platform == RuntimePlatform.Android)
-			cameraRay = mainCamera.ScreenPointToRay(Input.GetTouch(0).position);
-		else
-			cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition);
-		Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
-		float rayLength;
+		// //Handling moving
+		// Ray cameraRay;
+		// if (Application.platform == RuntimePlatform.Android)
+		// 	cameraRay = mainCamera.ScreenPointToRay(Input.GetTouch(0).position);
+		// else
+		// 	cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition);
+		// Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+		// float rayLength;
 
-		if (!groundPlane.Raycast(cameraRay, out rayLength)) 
-			return;
+		// if (!groundPlane.Raycast(cameraRay, out rayLength)) 
+		// 	return;
 
-		Vector3 pointToLook = cameraRay.GetPoint(rayLength);
-		Debug.DrawLine(cameraRay.origin, pointToLook, Color.blue);
-		transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
+		// Vector3 pointToLook = cameraRay.GetPoint(rayLength);
+		// Debug.DrawLine(cameraRay.origin, pointToLook, Color.blue);
+		// transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
 
-		moveVelocity = new Vector3(pointToLook.x - transform.position.x, 1, pointToLook.z - transform.position.z);
-		moveVelocity = moveSpeed * moveVelocity.normalized;
+		// moveVelocity = new Vector3(pointToLook.x - transform.position.x, 1, pointToLook.z - transform.position.z);
+		// moveVelocity = moveSpeed * moveVelocity.normalized;
+		Vector3 pointToLook = new Vector3(joystick.Horizontal, 0, joystick.Vertical);
+		moveVelocity = moveSpeed * pointToLook;
+		if (pointToLook != Vector3.zero)
+			transform.localRotation = Quaternion.LookRotation(pointToLook.normalized);
 	}
 
 	void FixedUpdate() {

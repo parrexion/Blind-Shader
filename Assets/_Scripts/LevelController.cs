@@ -35,6 +35,7 @@ public class LevelController : MonoBehaviour {
 	public void NextLevel() {
 		currentLevel++;
 		bestLevel = Mathf.Max(bestLevel, currentLevel);
+		DataController.instance.SubmitNewPlayerScore(bestLevel);
 		RestartLevel();
 	}
 }

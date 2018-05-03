@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour {
 
 	public Transform player;
 	public float speed;
+	public float offScreenX;
 
 	private bool isFlying = false;
 	private bool isActive = false;
@@ -14,7 +15,7 @@ public class Bullet : MonoBehaviour {
 
 	// Use this for initialization
 	void Start() {
-		ResetPostition();
+		OffscreenPostition();
 		isFlying = false;
 	}
 
@@ -30,7 +31,7 @@ public class Bullet : MonoBehaviour {
 		// }
 
 		if (!isActive && !isFlying)
-			ResetPostition();
+			OffscreenPostition();
 
 		if (isFlying)
 			transform.Translate(Vector3.forward * speed * Time.deltaTime);
@@ -38,6 +39,11 @@ public class Bullet : MonoBehaviour {
 
 	public void ResetPostition() {
 		transform.localPosition = player.transform.localPosition;
+		isActive = false;
+	}
+
+	public void OffscreenPostition() {
+		transform.localPosition = new Vector3(offScreenX, 0, 0);
 		isActive = false;
 	}
 

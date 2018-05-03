@@ -14,10 +14,10 @@ public class MainMenuController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		GoToMainMenu();
-		ActivateLevels();
 	}
 	
 	public void GoToLevelSelect() {
+		ActivateLevels();
 		mainMenuCanvas.enabled = false;
 		levelSelectCanvas.enabled = true;
 	}

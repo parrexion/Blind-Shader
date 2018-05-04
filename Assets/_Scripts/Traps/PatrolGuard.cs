@@ -8,14 +8,14 @@ public class PatrolGuard : Trap {
 	public float speed;
 	public float turnTime;
 
-	private Rigidbody rigid;
+	// private Rigidbody rigid;
 	private int currentWaypoint;
 	private float waitTime;
 
 
 	// Use this for initialization
 	void Start () {
-		rigid = GetComponent<Rigidbody>();
+		// rigid = GetComponent<Rigidbody>();
 	}
 	
 	void Update() {

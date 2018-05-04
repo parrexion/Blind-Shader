@@ -6,13 +6,13 @@ public class ProximityXray : MonoBehaviour {
 
 	public Transform player;
 	public Bullet shot;
-	Renderer render;
+	// Renderer render;
 
 
 	// Use this for initialization
 	void Start () {
 
-		render = gameObject.GetComponent<Renderer>();
+		// render = gameObject.GetComponent<Renderer>();
     }
 	
 	// Update is called once per frame

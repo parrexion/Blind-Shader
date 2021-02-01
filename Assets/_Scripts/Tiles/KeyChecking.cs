@@ -12,8 +12,9 @@ public class KeyChecking : MonoBehaviour {
 		if (other.gameObject.tag == "Player") {
 			Debug.Log("Found Key");
 			other.GetComponent<PlayerController>().AqcuireKey();
-			Vector3 pingLocation = new Vector3(transform.localPosition.x, 1f,transform.localPosition.z);
-			Instantiate(ping,pingLocation,ping.localRotation);
+			Vector3 pingLocation = new Vector3(transform.position.x, 1f,transform.position.z);
+			Transform p = Instantiate(ping,pingLocation,ping.transform.localRotation);
+			p.GetComponent<SpriteRenderer>().color = Color.yellow;
 			Destroy(gameObject);
 		}
 	}

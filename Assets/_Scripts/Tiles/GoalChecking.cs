@@ -5,17 +5,17 @@ using UnityEngine.UI;
 
 public class GoalChecking : MonoBehaviour {
 
-	private Text winText;
+	private BigTextUI winText;
 
 
 	void Start() {
-		winText = GameObject.Find("WinText").GetComponent<Text>();
+		winText = FindObjectOfType<BigTextUI>();
 	}
 	
 	void OnTriggerEnter(Collider other) {
 		if (other.gameObject.tag == "Player") {
 			if (other.GetComponent<PlayerController>().hasKey) {
-				winText.enabled = true;
+				winText.ShowVictory();
 				PlayerController.dead = true;
 				StartCoroutine(GoalReached());
 			}

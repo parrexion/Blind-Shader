@@ -32,9 +32,8 @@ public class Trap : MonoBehaviour {
 	}
 
 	protected void KillPlayer() {
-		Text winText = GameObject.Find("WinText").GetComponent<Text>();
-		winText.text = "YOU DIED";
-		winText.enabled = true;
+		BigTextUI winText = FindObjectOfType<BigTextUI>();
+		winText.ShowDeath();
 		PlayerController.dead = true;
 		StartCoroutine(Respawn());
 	}

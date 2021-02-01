@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Levels/Level1.unity
     guid: 742e7acfd0d6c154a97ff605769af5c1
-  - enabled: 1
+  - enabled: 0
     path: Assets/Levels/Level2.unity
     guid: 2c3c8ff23ade6e04fba987167c0e5c72
   - enabled: 1
@@ -32,3 +32,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Levels/Victory.unity
     guid: 90675b0bfb78a1b4fbc2f110300ac4dd
+  m_configObjects: {}

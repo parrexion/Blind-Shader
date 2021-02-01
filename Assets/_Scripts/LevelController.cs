@@ -12,8 +12,8 @@ public class LevelController : MonoBehaviour {
 			Destroy(gameObject);
 		}
 		else {
-			DontDestroyOnLoad(gameObject);
 			instance = this;
+			DontDestroyOnLoad(gameObject);
 		}
 	}
 #endregion

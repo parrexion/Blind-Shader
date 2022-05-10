@@ -5,6 +5,9 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour {
 
 	public static bool dead = false;
+
+	public System.Action<bool> onKeyUpdated;
+
 	public float moveSpeed;
 	public bool hasKey = false;
 	public Image keyImage;
@@ -43,8 +46,7 @@ public class PlayerController : MonoBehaviour {
 		else
 			cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition);
 		Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
-		float rayLength;
-		if(!groundPlane.Raycast(cameraRay, out rayLength))
+		if(!groundPlane.Raycast(cameraRay, out float rayLength))
 			return;
 
 		Vector3 pointToLook = cameraRay.GetPoint(rayLength);
@@ -60,6 +62,6 @@ public class PlayerController : MonoBehaviour {
 
 	public void AqcuireKey() {
 		hasKey = true;
-		keyImage.enabled = true;
+		onKeyUpdated?.Invoke(hasKey);
 	}
 }

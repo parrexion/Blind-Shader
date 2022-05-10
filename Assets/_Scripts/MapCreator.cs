@@ -48,28 +48,28 @@ public class MapCreator : MonoBehaviour {
 			position += new Vector3(0, 0.4f, 0);
 		}
 		else if (pixelColor.r == 255) {
-			Debug.Log("RED");
+			//Debug.Log("RED");
 			tile = colorPrefabs.red;
 		}
 		else if (pixelColor.g == 255) {
-			Debug.Log("GREEN");
+			//Debug.Log("GREEN");
 			tile = colorPrefabs.green;
 			player.transform.localPosition = new Vector3(position.x, 1,position.z);
 		}
 		else if (pixelColor.b == 255) {
-			Debug.Log("BLUE");
+			//Debug.Log("BLUE");
 			tile = colorPrefabs.blue;
 		}
 		else if (pixelColor.r > 128 && pixelColor.g > 128 && pixelColor.b < 128) {
-			Debug.Log("YELLOW");
+			//Debug.Log("YELLOW");
 			tile = colorPrefabs.yellow;
 		}
 		else if (pixelColor.r < 128 && pixelColor.g > 128 && pixelColor.b > 128) {
-			Debug.Log("CYAN");
+			//Debug.Log("CYAN");
 			tile = colorPrefabs.cyan;
 		}
 		else if (pixelColor.r > 128 && pixelColor.g < 128 && pixelColor.b > 128) {
-			Debug.Log("MAGENTA");
+			//Debug.Log("MAGENTA");
 			tile = colorPrefabs.magenta;
 		}
 		else {

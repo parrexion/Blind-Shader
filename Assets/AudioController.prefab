@@ -52,8 +52,8 @@ MonoBehaviour:
   voiceSource: {fileID: 2044252014489015083}
   sfxSource: {fileID: 2044252014489015082}
   fadeTime: 1
-  musicVolume: 0.5
-  sfxVolume: 0.3
+  musicVolume: 0.4
+  sfxVolume: 0.2
 --- !u!82 &2044252014489015085
 AudioSource:
   m_ObjectHideFlags: 0

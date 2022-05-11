@@ -49,8 +49,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e9595df42f2b4042bb544b9c5fe7807, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ping: {fileID: 4449854639308648, guid: 3060051a770d81d4bb5b9fa40219044c, type: 3}
+  ping: {fileID: 114167353589857742, guid: 3060051a770d81d4bb5b9fa40219044c, type: 3}
   pingSpeed: 0
+  killSfx: {fileID: 8300000, guid: cb8818061e47a4d438e175fbc87abe17, type: 3}
   spikes:
   - {fileID: 7922219093470942290}
   - {fileID: 4726776533695480548}

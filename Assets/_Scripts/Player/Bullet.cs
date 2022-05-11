@@ -7,20 +7,21 @@ public class Bullet : MonoBehaviour {
 	public Transform player;
 	public float speed;
 	public float offScreenX;
+	public AudioClip hitSfx;
+
+	public float IsFlyingFloat => (isActive) ? 1f : 0f;
 
 	private bool isFlying = false;
 	private bool isActive = false;
 	// private float currentTime = 0;
 
 
-	// Use this for initialization
-	void Start() {
+	private void Start() {
 		OffscreenPostition();
 		isFlying = false;
 	}
 
-	// Update is called once per frame
-	void Update() {
+	private void Update() {
 		// currentTime -= Time.deltaTime;
 
 		// if (currentTime <= 0) {
@@ -34,7 +35,7 @@ public class Bullet : MonoBehaviour {
 			OffscreenPostition();
 
 		if (isFlying)
-			transform.Translate(Vector3.forward * speed * Time.deltaTime);
+			transform.Translate(speed * Time.deltaTime * Vector3.forward);
 	}
 
 	public void ResetPostition() {
@@ -54,14 +55,13 @@ public class Bullet : MonoBehaviour {
 		isFlying = true;
 	}
 
-	void OnTriggerEnter(Collider other) {
-		if (other.gameObject.tag == "Wall") {
+	private void OnTriggerEnter(Collider other) {
+		if (other.gameObject.CompareTag("Wall")) {
 			isFlying = false;
 			isActive = true;
+			if(hitSfx)
+				AudioController.instance.PlaySfx(hitSfx);
 		}
 	}
 
-	public float GetIsFlyingFloat() {
-		return (isActive) ? 1f : 0f;
-	}
 }

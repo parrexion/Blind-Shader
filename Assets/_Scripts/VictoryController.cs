@@ -8,6 +8,14 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class VictoryController : MonoBehaviour {
 
+	public AudioClip victorySfx;
+
+
+	private void Start() {
+		if (victorySfx)
+			AudioController.instance.PlaySfx(victorySfx);
+	}
+
 	/// <summary>
 	/// Returns to the main menu.
 	/// </summary>

@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour {
 
 	public float moveSpeed;
 	public bool hasKey = false;
-	public Image keyImage;
+	public AudioClip startLevelSfx;
 
 	private Rigidbody rigid;
 	private Vector3 inputVector;
@@ -19,13 +19,15 @@ public class PlayerController : MonoBehaviour {
 	private Camera mainCamera;
 
 
-	void Start() {
+	private void Start() {
 		mainCamera = Camera.main;
 		rigid = GetComponent<Rigidbody>();
 		joystick = FindObjectOfType<Joystick>();
+		if(startLevelSfx)
+			AudioController.instance.PlaySfx(startLevelSfx);
 	}
 
-	void Update() {
+	private void Update() {
 		if(dead) {
 			moveVelocity = Vector3.zero;
 			return;
@@ -55,7 +57,7 @@ public class PlayerController : MonoBehaviour {
 #endif
 	}
 
-	void FixedUpdate() {
+	private void FixedUpdate() {
 		rigid.velocity = moveVelocity;
 	}
 

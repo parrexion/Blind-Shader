@@ -9,18 +9,20 @@ using UnityEngine.SceneManagement;
 public class PauseController : MonoBehaviour {
 
 	public Canvas pauseCanvas;
+	public AudioClip showPauseSfx;
+	public AudioClip hidePauseSfx;
+	public AudioClip clickSfx;
 
-	bool isPaused;
+	private bool isPaused;
+	private float oldVolume;
 
 
-	// Use this for initialization
-	void Start () {
+	private void Start () {
 		isPaused = false;
 		pauseCanvas.enabled = isPaused;
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+	private void Update () {
 		if (Input.GetKeyDown(KeyCode.Escape)) {
 			TogglePause();
 		}
@@ -34,14 +36,23 @@ public class PauseController : MonoBehaviour {
 		pauseCanvas.enabled = isPaused;
 
 		Time.timeScale = (isPaused) ? 0 : 1;
+		if(isPaused) {
+			oldVolume = AudioController.instance.musicVolume;
+			AudioController.instance.SetMusicVolume(0f);
+			AudioController.instance.PlaySfx(showPauseSfx);
+		} 
+		else {
+			AudioController.instance.SetMusicVolume(oldVolume);
+			AudioController.instance.PlaySfx(hidePauseSfx);
+		}
 	}
 
 	/// <summary>
 	/// Returns to the main menu.
 	/// </summary>
 	public void ReturnToMain() {
-		Debug.Log("asdjsldjasljdf");
 		Time.timeScale = 1;
+		AudioController.instance.PlaySfx(clickSfx);
 		SceneManager.LoadScene(0);
 	}
 }

@@ -7,16 +7,23 @@ public class FireShot : MonoBehaviour {
 	
 	public Bullet bullet;
 	public Image cooldownUI;
-
 	public float timeBetweenShots;
+	public AudioClip shootSfx;
+
 	private float cooldown;
 
-	
-	void Update() {
+
+	private void Start() {
+		BigTextUI ui = FindObjectOfType<BigTextUI>();
+		cooldownUI = ui.fireButton.image;
+		ui.fireButton.onClick.AddListener(Fire);
+	}
+
+	private void Update() {
 		cooldown -= Time.deltaTime;
 		UpdateCooldown();
 
-#if UNITY_ANDROID
+#if UNITY_ANDROID && UNITY_EDITOR
 		if (Input.GetKeyDown(KeyCode.X))
 			Fire();
 #else
@@ -26,16 +33,17 @@ public class FireShot : MonoBehaviour {
 #endif
 	}
 
-	// Update is called once per frame
 	public void Fire() {
-		if (cooldown > 0)
+		if (cooldown > 0 || PlayerController.dead)
 			return;
 
 		cooldown = timeBetweenShots;
 		bullet.Fire(transform.localRotation);
+		if (shootSfx)
+			AudioController.instance.PlaySfx(shootSfx);
 	}
 
-	void UpdateCooldown() {
+	private void UpdateCooldown() {
 		cooldownUI.fillAmount = Mathf.Clamp01((timeBetweenShots-cooldown)/timeBetweenShots);
 	}
 }

@@ -8,16 +8,10 @@ public class PatrolGuard : Trap {
 	public float speed;
 	public float turnTime;
 
-	// private Rigidbody rigid;
 	private int currentWaypoint;
 	private float waitTime;
 	private float distance;
 
-
-	// Use this for initialization
-	void Start() {
-		// rigid = GetComponent<Rigidbody>();
-	}
 
 	void Update() {
 		if(waitTime > 0) {
@@ -36,9 +30,11 @@ public class PatrolGuard : Trap {
 	}
 
 	void OnCollisionEnter(Collision other) {
-		if(other.gameObject.tag == "Player") {
+		if(other.gameObject.CompareTag("Player")) {
 			CreatePings(2, 0.15f);
 			KillPlayer();
+			if(killSfx)
+				AudioController.instance.PlaySfx(killSfx);
 		}
 	}
 

@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1951736964858108, guid: ca253ead45d95f14f88819e55b20bbe4, type: 3}
       propertyPath: m_Name
-      value: Leaves
+      value: LeavesDark
       objectReference: {fileID: 0}
     - target: {fileID: 4413549040889302, guid: ca253ead45d95f14f88819e55b20bbe4, type: 3}
       propertyPath: m_RootOrder
@@ -61,5 +61,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 50d74a58eae3e0244b07586cc7e5c6aa,
         type: 3}
+    - target: {fileID: 7785236350986404695, guid: ca253ead45d95f14f88819e55b20bbe4,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ca0483d4596847a40b8449f5a2d39fb2, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca253ead45d95f14f88819e55b20bbe4, type: 3}

@@ -13,13 +13,16 @@ public class SpikesChecking : Trap {
 		}
 	}
 
-	void OnTriggerEnter(Collider other) {
+	private void OnTriggerEnter(Collider other) {
 		if (other.gameObject.CompareTag("Player")) {
 			CreatePings(2,0.15f);
 			KillPlayer();
 			for(int i = 0; i < spikes.Length; i++) {
 				spikes[i].SetActive(true);
 			}
+
+			if(killSfx)
+				AudioController.instance.PlaySfx(killSfx);
 		}
 	}
 }

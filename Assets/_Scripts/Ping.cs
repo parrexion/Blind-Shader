@@ -4,27 +4,26 @@ using UnityEngine;
 
 public class Ping : MonoBehaviour {
 
+	public SpriteRenderer spriteRenderer;
 	public float speed;
 	public float maxSize;
 
 	private float currentScale;
 
 
-	// Use this for initialization
-	void Start () {
+	private void Start () {
 		currentScale = 1;
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	private void Update () {
 		currentScale += Time.deltaTime * speed;
 
 		if (currentScale >= maxSize){
-
 			// currentScale = 1;
 			Destroy(gameObject);
 		}
-
-		transform.localScale = new Vector3(currentScale,currentScale,currentScale);
+		else {
+			transform.localScale = new Vector3(currentScale,currentScale,currentScale);
+		}
 	}
 }

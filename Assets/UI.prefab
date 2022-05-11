@@ -233,10 +233,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3787349834667068241}
+  - component: {fileID: 3787349834667068253}
   - component: {fileID: 3787349834667068240}
   - component: {fileID: 3787349834667068243}
   - component: {fileID: 3787349834667068242}
-  - component: {fileID: 3787349834667068253}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -267,6 +267,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &3787349834667068253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3787349834667068252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 127ef0073116a324a82c746841a8f16c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  background: {fileID: 3787349833632709229}
+  winText: {fileID: 3787349835068157618}
+  deathText: {fileID: 3787349834679023042}
+  keyImage: {fileID: 3787349834233912000}
+  fireButton: {fileID: 3787349835155413939}
+  victorySfx: {fileID: 8300000, guid: 6d3ddc12223a2654d9b7eb05d69a217f, type: 3}
+  deathSfx: {fileID: 8300000, guid: 4f83094b764656b48933143a554329f0, type: 3}
 --- !u!223 &3787349834667068240
 Canvas:
   m_ObjectHideFlags: 0
@@ -327,21 +346,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &3787349834667068253
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3787349834667068252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 127ef0073116a324a82c746841a8f16c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  background: {fileID: 3787349833632709229}
-  winText: {fileID: 3787349835068157618}
-  deathText: {fileID: 3787349834679023042}
 --- !u!1 &3787349834679023042
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,11 +458,11 @@ RectTransform:
   m_Father: {fileID: 3787349834667068241}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.000061035156, y: 0}
   m_SizeDelta: {x: 148, y: 148}
-  m_Pivot: {x: 1, y: 1}
+  m_Pivot: {x: 0, y: 0}
 --- !u!222 &3787349834740755990
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -691,18 +695,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3787349835155413936}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: Fire
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &3787349835611524498
 GameObject:
   m_ObjectHideFlags: 0

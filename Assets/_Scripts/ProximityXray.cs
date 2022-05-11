@@ -9,21 +9,20 @@ public class ProximityXray : MonoBehaviour {
 	// Renderer render;
 
 
-	// Use this for initialization
-	void Start () {
+	//void Start () {
 
-		// render = gameObject.GetComponent<Renderer>();
-    }
+	//	render = gameObject.GetComponent<Renderer>();
+	//}
 	
 	// Update is called once per frame
 	void Update () {
 
 		//render.sharedMaterial.SetVector("_PlayerPosition", player.position);
 		//render.sharedMaterial.SetVector("_ShotPosition", shot.transform.position);
-		//render.sharedMaterial.SetFloat("_UseShot", shot.GetIsFlyingFloat());
+		//render.sharedMaterial.SetFloat("_UseShot", shot.IsFlyingFloat);
 
 		Shader.SetGlobalVector("_PlayerPosition", player.position);
 		Shader.SetGlobalVector("_ShotPosition", shot.transform.position);
-		Shader.SetGlobalFloat("_UseShot", shot.GetIsFlyingFloat());
+		Shader.SetGlobalFloat("_UseShot", shot.IsFlyingFloat);
 	}
 }

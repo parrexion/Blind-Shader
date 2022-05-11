@@ -4,22 +4,25 @@ using UnityEngine;
 
 public class MapCreator : MonoBehaviour {
 
-	public Texture2D map;
-	public float tileOffset;
-	public bool useBlind;
 	public ColorPrefabs normalPrefabs;
 	public ColorPrefabs blindPrefabs;
 	public Transform player;
+	public Transform mapTransform;
+
+	[Header("Map settings")]
+	public Texture2D map;
+	public float tileOffset;
+	public bool useBlind;
 
 
 	/// <summary>
 	/// Generate map
 	/// </summary>
 	public void GenerateMap () {
-
 		// Remove old map
 		List<GameObject> children = new List<GameObject>();
-		foreach (Transform child in transform) children.Add(child.gameObject);
+		foreach (Transform child in mapTransform) 
+			children.Add(child.gameObject);
 		children.ForEach(child => DestroyImmediate(child));
 		Color32[] colorData = map.GetPixels32();
 
@@ -32,8 +35,7 @@ public class MapCreator : MonoBehaviour {
 	}
 
 
-	void GenerateTile(Color32 pixelColor, int x, int y) {
-
+	private void GenerateTile(Color32 pixelColor, int x, int y) {
 		Vector3 position = new Vector3(x, 0.1f, y);
 		ColorPrefabs colorPrefabs = (useBlind) ? blindPrefabs : normalPrefabs;
 
@@ -80,7 +82,7 @@ public class MapCreator : MonoBehaviour {
 		if (tile == null)
 			return;
 
-		Instantiate(tile, position, Quaternion.identity, transform);
+		Instantiate(tile, position, Quaternion.identity, mapTransform);
 	}
 	
 }

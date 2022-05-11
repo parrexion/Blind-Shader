@@ -45,8 +45,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53b302402a5f44347940956dc68e2277, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ping: {fileID: 4449854639308648, guid: 3060051a770d81d4bb5b9fa40219044c, type: 3}
+  ping: {fileID: 114167353589857742, guid: 3060051a770d81d4bb5b9fa40219044c, type: 3}
   pingColor: {r: 0.9622642, g: 0.5277113, b: 0.30411178, a: 1}
+  triggerSfx:
+  - {fileID: 8300000, guid: c4d801aac7fc5ef49a0f11a3535ac68c, type: 3}
+  - {fileID: 8300000, guid: b299a5c9c1aded2459952be97cf21246, type: 3}
+  - {fileID: 8300000, guid: 5b3bceed1622ad743be833608ffa4972, type: 3}
+  volumeScale: 0.4
 --- !u!65 &2138374277195565634
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -55,7 +60,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1951736964858108}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.8, y: 0.1, z: 0.8}

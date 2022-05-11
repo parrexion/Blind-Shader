@@ -6,19 +6,22 @@ public class KeyChecking : MonoBehaviour {
 
 	public Collider keyCollider;
 	public GameObject keyObject;
-	public Transform ping;
+	public Ping ping;
+	public AudioClip pickupSfx;
 	
 
-	void OnTriggerEnter(Collider other) {
+	private void OnTriggerEnter(Collider other) {
 		if (other.gameObject.CompareTag("Player")) {
-			Debug.Log("Found Key");
 			other.GetComponent<PlayerController>().AqcuireKey();
-			Vector3 pingLocation = new Vector3(transform.position.x, 1f,transform.position.z);
-			Transform p = Instantiate(ping,pingLocation,ping.transform.localRotation);
-			p.GetComponent<SpriteRenderer>().color = Color.yellow;
+
+			Vector3 pingLocation = new Vector3(transform.position.x, 1f, transform.position.z);
+			Ping p = Instantiate(ping, pingLocation, ping.transform.localRotation);
+			p.spriteRenderer.color = Color.yellow;
 
 			keyObject.SetActive(false);
 			keyCollider.enabled = false;
+			if (pickupSfx)
+				AudioController.instance.PlaySfx(pickupSfx);
 		}
 	}
 }

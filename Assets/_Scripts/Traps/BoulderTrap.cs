@@ -7,6 +7,8 @@ public class BoulderTrap : Trap {
 	public bool isActive = false;
 	public Vector2 rollSpeed;
 	public float pingInterval;
+	public AudioSource rollingSound;
+	public AudioClip hitSfx;
 
 	private float currentPingTime;
 	private Vector3 speed;
@@ -34,17 +36,24 @@ public class BoulderTrap : Trap {
 
 	public override bool Activate() {
 		isActive = true;
+		rollingSound.volume = AudioController.instance.sfxVolume;
+		rollingSound.Play();
 		return true;
 	}
 
 	void OnTriggerEnter(Collider other) {
-		if (isActive && other.gameObject.tag == "Player") {
+		if (isActive && other.gameObject.CompareTag("Player")) {
 			KillPlayer();
+			if(killSfx)
+				AudioController.instance.PlaySfx(killSfx);
 		}
-		else if (other.gameObject.tag == "Wall") {
+		else if (other.gameObject.CompareTag("Wall")) {
 			isActive = false;
 			GetComponent<Collider>().isTrigger = false;
 			CreateSinglePing();
+			rollingSound.Stop();
+			if(hitSfx)
+				AudioController.instance.PlaySfx(hitSfx);
 		}
 	}
 }

@@ -23,8 +23,11 @@ Shader "Custom/Proximity" {
 #pragma vertex vert
 #pragma fragment frag
 
+#include "UnityCG.cginc"
+
 	// Access the shaderlab properties
-	uniform sampler2D _MainTex;
+	uniform sampler2D _MainTex; //Main texture
+	uniform float4 _MainTex_ST; //Tiling and offset values
 	uniform float4 _PlayerPosition;
 	uniform float4 _ShotPosition;
 	uniform float _PVisibleDistance;
@@ -34,14 +37,14 @@ Shader "Custom/Proximity" {
 	// Input to vertex shader
 	struct vertexInput {
 		float4 vertex : POSITION;
-		float4 texcoord : TEXCOORD0;
+		float2 uvs : TEXCOORD0;
 	};
 
 	// Input to fragment shader
 	struct vertexOutput {
 		float4 pos : SV_POSITION;
 		float4 position_in_world_space : TEXCOORD0;
-		float4 tex : TEXCOORD1;
+		float2 tex : TEXCOORD1;
 	};
 
 	// VERTEX SHADER
@@ -49,23 +52,23 @@ Shader "Custom/Proximity" {
 		vertexOutput output;
 		output.pos = UnityObjectToClipPos(input.vertex);
 		output.position_in_world_space = mul(unity_ObjectToWorld, input.vertex);
-		output.tex = input.texcoord;
+		output.tex = TRANSFORM_TEX(input.uvs, _MainTex); //Apply scaling
 		return output;
 	}
 
 	// FRAGMENT SHADER
 	float4 frag(vertexOutput input) : COLOR {
 
-		// Calculate distance to player or shot
+		// Calculate distance to player or bullet
 		float distPlayer = _PVisibleDistance - distance(input.position_in_world_space, _PlayerPosition);
 		float distShot = _SVisibleDistance - distance(input.position_in_world_space, _ShotPosition) - (1 - _UseShot) * _SVisibleDistance;
 
 		float dist = max(distPlayer, distShot);
 		float alpha = step(0, dist);
 
-		// Return appropriate colour
-		float4 tex = tex2D(_MainTex, float4(input.tex));
-		tex.a = alpha; /*0.1 + 0.9 * alpha;*/
+		// Return appropriate colour alpha
+		float4 tex = tex2D(_MainTex, input.tex);
+		tex.a *= alpha;
 		return tex;
 	}
 

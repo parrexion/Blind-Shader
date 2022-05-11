@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Trap : MonoBehaviour {
 
-	public Transform ping;
+	public Ping ping;
 	public float pingSpeed;
+	public AudioClip killSfx;
 
 
 	public virtual bool Activate() {
@@ -14,11 +15,11 @@ public class Trap : MonoBehaviour {
 
 	protected void CreateSinglePing() {
 		Vector3 pingLocation = new Vector3(transform.localPosition.x, 3f, transform.localPosition.z);
-		Transform p = Instantiate(ping, pingLocation, ping.localRotation);
+		Ping p = Instantiate(ping, pingLocation, ping.transform.localRotation);
 		if (pingSpeed > 0) {
-			p.GetComponent<Ping>().speed = pingSpeed;
+			p.speed = pingSpeed;
 		}
-		p.GetComponent<SpriteRenderer>().color = Color.red;
+		p.spriteRenderer.color = Color.red;
 	}
 
 	protected void CreatePings(int pings, float interval) {

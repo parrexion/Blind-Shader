@@ -45,3 +45,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bestLevel: 1
   currentLevel: 0
+  ambienceTrack: {fileID: 8300000, guid: 824ca1407f0b5074b8ae28a7e48a670f, type: 3}
